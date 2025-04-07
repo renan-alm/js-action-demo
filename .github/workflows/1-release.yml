@@ -51,10 +51,16 @@ jobs:
         env:
           GITHUB_OUTPUT: ${{ github.action_path }}/output.env
 
+      # npm config set //npm.pkg.github.com/:_authToken $NODE_AUTH_TOKEN
+      # echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
       - name: Publish to GitHub Packages
         if: steps.check_version.outputs.changed == 'true'
         run: |
-          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+          npm config set _auth $NODE_AUTH_TOKEN 
+          npm config set registry $NPM_REGISTRY_URL 
+          npm config set always-auth=true 
+          npm config set email=renan-alm@github.com
+          npm config set //npm.pkg.github.com/:_authToken $NODE_AUTH_TOKEN
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
