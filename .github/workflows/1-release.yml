@@ -63,6 +63,13 @@ jobs:
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_REGISTRY_URL: https://npm.pkg.github.com/
+
+      - name: Print log if Publish failed
+        if: steps.check_version.outputs.changed == 'true' && failure()
+        run: |
+          echo "Publish failed, check the logs for more details"
+          cat /home/runner/.npm/_logs/*-debug.log
 
       - name: Create Git tag
         if: steps.check_version.outputs.changed == 'true'
