@@ -59,7 +59,7 @@ jobs:
           npm config set _auth $NODE_AUTH_TOKEN 
           npm config set registry $NPM_REGISTRY_URL 
           npm config set email=renan-alm@github.com
-          npm config set //npm.pkg.github.com/:_authToken $NODE_AUTH_TOKEN
+          npm config set //npm.pkg.github.com/:_auth = $NODE_AUTH_TOKEN
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -69,6 +69,7 @@ jobs:
         if: steps.check_version.outputs.changed == 'true' && failure()
         run: |
           echo "Publish failed, check the logs for more details"
+          ls -la /home/runner/.npm/_logs
           cat /home/runner/.npm/_logs/*-debug.log
 
       - name: Create Git tag
