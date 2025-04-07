@@ -75,6 +75,8 @@ jobs:
       - name: Create Git tag
         if: steps.check_version.outputs.changed == 'true'
         run: |
+          git config --global user.email "renan-alm@github.com"
+          git config --global user.name "Renan Alm"
           git tag -a "v${{ steps.check_version.outputs.CURRENT_VERSION }}" -m "Release v${{ steps.check_version.outputs.CURRENT_VERSION }}"
           git push origin "v${{ steps.check_version.outputs.CURRENT_VERSION }}"
         env:
