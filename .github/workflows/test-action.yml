@@ -1,0 +1,32 @@
+name: Hello World
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+run-name: Test Action - ${{ github.event_name }} - ${{ github.actor }}
+
+jobs:
+  test-my-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test the action
+        uses: ./ # Uses an action in the root directory
+        id: action-test
+        with:
+          user-name: 'Renan'
+
+      - name: Get the output time
+        run: echo "The time was ${{ steps.action-test.outputs.time }}"
