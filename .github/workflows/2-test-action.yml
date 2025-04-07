@@ -1,4 +1,4 @@
-name: Hello World
+name: 02 - Test Action
 
 on:
   push:

@@ -1,0 +1,54 @@
+name: 01 - Release to GitHub Packages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Required to get previous tags
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Check if version has changed
+        id: check_version
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "Current version: $CURRENT_VERSION"
+          PREVIOUS_TAG=$(git describe --abbrev=0 --tags 2>/dev/null || echo '')
+          echo "Previous tag: $PREVIOUS_TAG"
+          if [[ "$PREVIOUS_TAG" == "v$CURRENT_VERSION" ]]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Version has not changed, skipping publish"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Version has changed, proceeding with publish"
+          fi
+        env:
+          GITHUB_OUTPUT: ${{ github.action_path }}/output.env
+
+      - name: Publish to GitHub Packages
+        if: steps.check_version.outputs.changed == 'true'
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
