@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 
 try {
-    //
+
     const nameToGreet = core.getInput('user-name');
     console.log(`Hello ${nameToGreet}!`);
     const time = (new Date()).toTimeString();

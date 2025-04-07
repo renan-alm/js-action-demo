@@ -8,14 +8,14 @@ branding:
   color: 'blue'
 
 inputs:
-  USER_NAME:
+  user-name:
     description: 'An example input'
     required: true
     default: 'Renan'
 
 outputs:
-  SAMPLE_OUTPUT:
-    description: 'An example output'
+  time:
+    description: 'The time the action ran'
 
 runs:
   using: 'node20'
