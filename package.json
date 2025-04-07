@@ -15,5 +15,8 @@
   },
   "devDependencies": {
     "@vercel/ncc": "^0.38.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
