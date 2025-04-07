@@ -54,7 +54,7 @@ jobs:
       - name: Publish to GitHub Packages
         if: steps.check_version.outputs.changed == 'true'
         run: |
-          npm config set //npm.pkg.github.com/:_authToken $NODE_AUTH_TOKEN
+          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
