@@ -56,8 +56,7 @@ jobs:
       - name: Publish to GitHub Packages
         if: steps.check_version.outputs.changed == 'true'
         run: |
-          npm config set _auth $NODE_AUTH_TOKEN 
-          npm config set registry $NPM_REGISTRY_URL 
+          npm config set registry $NPM_REGISTRY_URL
           npm config set email=renan-alm@github.com
           npm config set //npm.pkg.github.com/:_auth $NODE_AUTH_TOKEN
           npm publish
