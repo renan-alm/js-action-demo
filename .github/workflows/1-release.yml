@@ -69,8 +69,8 @@ jobs:
         if: steps.check_version.outputs.changed == 'true' && failure()
         run: |
           echo "Publish failed, check the logs for more details"
-          ls -la /home/runner/.npm/_logs
-          cat /home/runner/.npm/_logs/*-debug.log
+          last_file=$(ls -la | grep '^-' | awk '{print $NF}' | tail -n 1)
+          cat "$last_file"
 
       - name: Create Git tag
         if: steps.check_version.outputs.changed == 'true'
