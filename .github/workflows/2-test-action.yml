@@ -24,7 +24,7 @@ jobs:
           node-version: 22
 
       - name: Test the Action
-        uses: renan-alm/js-action-demo@v0.2.2 # Uses an action in the root directory
+        uses: ./ # Uses an action in the root directory
         id: action-test
         with:
           user-name: 'Renan Almeida'
