@@ -23,6 +23,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Test the Action
         uses: ./ # Uses an action in the root directory
         id: action-test
