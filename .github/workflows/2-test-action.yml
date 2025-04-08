@@ -9,7 +9,7 @@ on:
   #   branches:
   #     - main
 
-run-name: Test Action - ${{ github.event_name }} - ${{ github.actor }}
+run-name: Test Action - ${{ github.event_name }}
 
 jobs:
   test-my-action:
