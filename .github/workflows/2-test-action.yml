@@ -24,10 +24,10 @@ jobs:
           node-version: 22
 
       - name: Test the Action
-        uses: ./ # Uses an action in the root directory
+        uses: renan-alm/js-action-demo # Uses an action in the root directory
         id: action-test
         with:
-          user-name: 'Renan'
+          user-name: 'Renan Almeida'
 
       - name: Get the output time created during Action run
         run: echo "The time was ${{ steps.action-test.outputs.time }}"
