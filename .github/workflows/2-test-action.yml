@@ -32,5 +32,18 @@ jobs:
         with:
           user-name: 'Renan Almeida'
 
+      - name: Ensure the output greeting is correct
+        if: steps.action-test.outputs.greeting == 'Hello Renan Almeida!'
+        run: |
+          echo "Greeting matches expected value: ${{ steps.action-test.outputs.greeting }}"
+
+      - name: Output if greeting does not match
+        if: steps.action-test.outputs.greeting != 'Hello Renan Almeida!'
+        run: |
+          echo "Greeting does not match expected value."
+          echo "Expected: Hello Renan Almeida!"
+          echo "Actual: ${{ steps.action-test.outputs.greeting }}"
+          exit 1
+
       - name: Get the output time created during Action run
         run: echo "The time was ${{ steps.action-test.outputs.time }}"
