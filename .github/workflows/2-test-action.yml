@@ -2,9 +2,9 @@ name: 02 - Test Action
 
 on:
   workflow_dispatch: 
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   # pull_request:
   #   branches:
   #     - main
@@ -24,7 +24,7 @@ jobs:
           node-version: 22
 
       - name: Test the Action
-        uses: renan-alm/js-action-demo # Uses an action in the root directory
+        uses: renan-alm/js-action-demo@v0.2.2 # Uses an action in the root directory
         id: action-test
         with:
           user-name: 'Renan Almeida'
