@@ -68,8 +68,10 @@ jobs:
       - name: Print log if Publish failed
         if: steps.check_version.outputs.changed == 'true' && failure()
         run: |
+          ls -la
           echo "Publish failed, check the logs for more details"
           last_file=$(ls -la | grep '^-' | awk '{print $NF}' | tail -n 1)
+          echo Printing $last_file ...
           cat "$last_file"
 
       - name: Create Git tag (if applicable)
