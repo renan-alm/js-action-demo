@@ -2,9 +2,9 @@ name: 01 - Release to GitHub Packages
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
 
 run-name: Release to GitHub Packages - ${{ github.actor }}
 
