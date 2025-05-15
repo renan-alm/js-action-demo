@@ -1,6 +1,5 @@
 # Action JS Template
 
-[![Build Status](https://github.com/renan-alm/js-action-demo/actions/workflows/1-build.yml/badge.svg)](https://github.com/renan-alm/js-action-demo/actions/workflows/1-build.yml)
 [![Test](https://github.com/renan-alm/js-action-demo/actions/workflows/2-test-action.yml/badge.svg)](https://github.com/renan-alm/js-action-demo/actions/workflows/2-test-action.yml)
 [![License](https://img.shields.io/github/license/renan-alm/js-action-demo)](LICENSE)
 [![Issues](https://img.shields.io/github/issues/renan-alm/js-action-demo)](https://github.com/renan-alm/js-action-demo/issues)
