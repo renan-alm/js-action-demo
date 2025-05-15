@@ -1,6 +1,6 @@
 {
   "name": "@renan-alm/js-action-demo",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "This is a demo of a JavaScript Action",
   "main": "index.js",
   "scripts": {
