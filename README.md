@@ -1,5 +1,12 @@
 # Action JS Template
 
+[![Build Status](https://github.com/renan-alm/js-action-demo/actions/workflows/1-build.yml/badge.svg)](https://github.com/renan-alm/js-action-demo/actions/workflows/1-build.yml)
+[![Test](https://github.com/renan-alm/js-action-demo/actions/workflows/2-test-action.yml/badge.svg)](https://github.com/renan-alm/js-action-demo/actions/workflows/2-test-action.yml)
+[![License](https://img.shields.io/github/license/renan-alm/js-action-demo)](LICENSE)
+[![Issues](https://img.shields.io/github/issues/renan-alm/js-action-demo)](https://github.com/renan-alm/js-action-demo/issues)
+[![Stars](https://img.shields.io/github/stars/renan-alm/js-action-demo)](https://github.com/renan-alm/js-action-demo/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/renan-alm/js-action-demo)](https://github.com/renan-alm/js-action-demo/commits/main)
+
 A JavaScript GitHub Action template that provides basic greeting functionality.
 
 ## Features
