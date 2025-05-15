@@ -5,9 +5,9 @@ on:
   push:
     branches:
       - main
-  # pull_request:
-  #   branches:
-  #     - main
+  pull_request:
+    branches:
+      - main
 
 run-name: Test Action - ${{ github.event_name }}
 
@@ -21,23 +21,24 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20 # Changed to match action.yml node20 runtime
 
       - name: Install dependencies
         run: npm install
 
-      - name: Test the Action
-        uses: ./ # Uses an action in the root directory
+      # Test with custom input
+      - name: Test Custom Input
+        uses: ./
         id: action-test
         with:
           user-name: 'Renan Almeida'
 
-      - name: Ensure the output greeting is correct
+      - name: Ensure custom greeting is correct
         if: steps.action-test.outputs.greeting == 'Hello Renan Almeida!'
         run: |
           echo "Greeting matches expected value: ${{ steps.action-test.outputs.greeting }}"
 
-      - name: Output if greeting does not match
+      - name: Output if custom greeting does not match
         if: steps.action-test.outputs.greeting != 'Hello Renan Almeida!'
         run: |
           echo "Greeting does not match expected value."
@@ -45,5 +46,30 @@ jobs:
           echo "Actual: ${{ steps.action-test.outputs.greeting }}"
           exit 1
 
-      - name: Get the output time created during Action run
-        run: echo "The time was ${{ steps.action-test.outputs.time }}"
+      # Test with default input
+      - name: Test Default Input
+        uses: ./
+        id: default-test
+
+      - name: Verify Default Greeting
+        if: steps.default-test.outputs.greeting == 'Hello Renan!'
+        run: |
+          echo "Default greeting works: ${{ steps.default-test.outputs.greeting }}"
+
+      - name: Output if default greeting does not match
+        if: steps.default-test.outputs.greeting != 'Hello Renan!'
+        run: |
+          echo "Default greeting does not match expected value."
+          echo "Expected: Hello Renan!"
+          echo "Actual: ${{ steps.default-test.outputs.greeting }}"
+          exit 1
+
+      # Test outputs
+      - name: Verify time output
+        run: |
+          if [[ -z "${{ steps.action-test.outputs.time }}" ]]; then
+            echo "Time output is missing"
+            exit 1
+          else
+            echo "The time was ${{ steps.action-test.outputs.time }}"
+          fi
