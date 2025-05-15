@@ -40,6 +40,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions[bot]"
+          git config set advice.addIgnoredFile false
           git add dist/
           git commit -m "chore: update distributed files" || echo "No changes to commit"
           git push
