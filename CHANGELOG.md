@@ -8,6 +8,15 @@
 
 # Changelog
 
+## v0.4.0
+
+`2025.05.15`
+
+- 🔨 Fixed build configuration
+- 🚀 Added automatic dist folder commit
+- 📦 Updated package publishing workflow
+- 🔄 Added version check before publishing
+
 ## v0.3.0
 
 `2025.05.15`
